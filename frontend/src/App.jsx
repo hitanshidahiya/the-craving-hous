@@ -7,6 +7,7 @@ import CartDrawer from './components/layout/CartDrawer'
 import Home from './pages/Home'
 import Menu from './pages/Menu'
 import Order from './pages/Order'
+import Track from './pages/Track'
 
 const Placeholder = ({ title }) => (
   <div className="min-h-screen flex items-center justify-center pt-20">
