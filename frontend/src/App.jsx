@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import Menu from './pages/Menu'
 import Order from './pages/Order'
 import Track from './pages/Track'
+import Admin from './pages/Admin'
 
 const Placeholder = ({ title }) => (
   <div className="min-h-screen flex items-center justify-center pt-20">
@@ -32,7 +33,7 @@ export default function App() {
               <Route path="/menu"  element={<Menu />} />
               <Route path="/order" element={<Order />} />
               <Route path="/track" element={<Placeholder title="Order Tracking" />} />
-              <Route path="/admin" element={<Placeholder title="Admin Panel" />} />
+              <Route path="/admin" element={<Admin />} />
               <Route path="*"      element={<Placeholder title="404 — Not Found" />} />
             </Routes>
           </main>
