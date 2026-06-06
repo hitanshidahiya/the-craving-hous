@@ -4,41 +4,40 @@ import { CartProvider } from './context/CartContext'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import CartDrawer from './components/layout/CartDrawer'
-import Home from './pages/Home'
-import Menu from './pages/Menu'
-import Order from './pages/Order'
-import Track from './pages/Track'
-import Admin from './pages/Admin'
-
-const Placeholder = ({ title }) => (
-  <div className="min-h-screen flex items-center justify-center pt-20">
-    <div className="text-center">
-      <div className="text-6xl mb-4">🚧</div>
-      <h1 className="font-display text-3xl text-ch-brown font-semibold mb-2">{title}</h1>
-      <p className="text-ch-tan text-sm">Coming soon — being built next!</p>
-    </div>
-  </div>
-)
+import Home     from './pages/Home'
+import Menu     from './pages/Menu'
+import Order    from './pages/Order'
+import Track    from './pages/Track'
+import Admin    from './pages/Admin'
+import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
     <BrowserRouter>
       <CartProvider>
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <CartDrawer />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/"      element={<Home />} />
-              <Route path="/menu"  element={<Menu />} />
-              <Route path="/order" element={<Order />} />
-              <Route path="/track" element={<Placeholder title="Order Tracking" />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="*"      element={<Placeholder title="404 — Not Found" />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+        <Routes>
+          {/* Admin — no navbar/footer */}
+          <Route path="/admin" element={<Admin />} />
+
+          {/* Public pages — with navbar/footer */}
+          <Route path="/*" element={
+            <div className="min-h-screen flex flex-col">
+              <Navbar />
+              <CartDrawer />
+              <main className="flex-1">
+                <Routes>
+                  <Route path="/"      element={<Home />}     />
+                  <Route path="/menu"  element={<Menu />}     />
+                  <Route path="/order" element={<Order />}    />
+                  <Route path="/track" element={<Track />}    />
+                  <Route path="*"      element={<NotFound />} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
+          } />
+        </Routes>
+
         <Toaster
           position="bottom-right"
           toastOptions={{
@@ -47,7 +46,7 @@ export default function App() {
               borderRadius: '12px', fontSize: '13px',
               border: '1px solid rgba(192,139,58,0.2)',
             },
-            success: { iconTheme: { primary: '#C08B3A', secondary: '#2B1206' } },
+            success: { iconTheme: { primary:'#C08B3A', secondary:'#2B1206' } },
           }}
         />
       </CartProvider>
