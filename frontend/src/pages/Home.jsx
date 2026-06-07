@@ -10,7 +10,7 @@ import interior1 from '../assets/interior1.jpg'
 import interior2 from '../assets/interior2.jpg'
 import exterior  from '../assets/exterior.jpg'
 import heroBg    from '../assets/hero.png'
-import hero2    from '../assets/hero2.png'
+import heroBg2   from '../assets/hero2.png'
 import food1     from '../assets/food1.jpg'
 import video1    from '../assets/video1.mp4'
 
@@ -145,10 +145,20 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ──────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+      <section className="relative min-h-[70vh] sm:min-h-screen flex flex-col justify-center items-center overflow-hidden">
 
-        {/* Hero background */}
-        <div className="absolute inset-0"
+        {/* Mobile image */}
+        <div className="absolute inset-0 sm:hidden"
+          style={{
+            backgroundImage: `url(${heroBg2})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+
+        {/* Desktop image */}
+        <div className="absolute inset-0 hidden sm:block"
           style={{
             backgroundImage: `url(${heroBg})`,
             backgroundSize: 'cover',
@@ -157,12 +167,12 @@ export default function Home() {
           }}
         />
 
-        {/* Mobile overlay — lighter so image actually shows */}
+        {/* Mobile overlay */}
         <div className="absolute inset-0 pointer-events-none sm:hidden"
-          style={{ background: 'rgba(6,3,1,0.52)' }}
+          style={{ background: 'rgba(6,3,1,0.45)' }}
         />
 
-        {/* Desktop: directional overlay — dark left, reveals café on right */}
+        {/* Desktop overlay */}
         <div className="absolute inset-0 pointer-events-none hidden sm:block"
           style={{
             background: [
@@ -172,79 +182,34 @@ export default function Home() {
           }}
         />
 
-        {/* hero content */}
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-5 sm:px-6 lg:px-12 pt-24 sm:pt-28 pb-16 sm:pb-20 animate-fade-up">
-          <div className="max-w-xl">
-
-            {/* decorative line + heart */}
-            <div className="flex items-center gap-3 mb-5 sm:mb-7">
-              <span className="block w-8 h-px bg-ch-gold/50" />
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" className="text-ch-gold/60">
-                <path d="M12 21C12 21 3 13.5 3 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-9 13-9 13z"
-                  stroke="currentColor" strokeWidth="1.5" />
-              </svg>
-            </div>
-
-            {/* headline — smaller clamp floor for mobile */}
-            <h1 className="font-display font-bold text-ch-cream leading-[1.06] mb-4 sm:mb-5"
-              style={{ fontSize:'clamp(2rem,8vw,5rem)' }}>
-              Where<br />
-              Cravings<br />
-              Become<br />
-              <em className="not-italic"
-                style={{ color:'#C8972A', textShadow:'0 0 60px rgba(200,151,42,0.45)' }}>
-                Memories
-              </em>
-            </h1>
-
-            <p className="text-ch-cream/55 text-[13px] sm:text-[15px] mb-8 sm:mb-10 tracking-wide">
-              A perfect blend of taste, comfort &amp; vibes.
-            </p>
-
-            {/* CTA buttons */}
-            <div className="flex gap-3 sm:gap-4 flex-wrap">
-              <Link
-                to="/order?type=dine-in"
-                className="inline-flex items-center gap-2 sm:gap-2.5 font-semibold text-[12px] sm:text-[13px] px-5 sm:px-7 py-3 sm:py-3.5 rounded-full
-                  transition-all duration-200 hover:scale-105 hover:shadow-[0_6px_24px_rgba(200,151,42,0.45)]"
-                style={{ background:'#C8972A', color:'#1A0A04' }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M3 2h18l-2 13H5L3 2z"/><circle cx="9" cy="21" r="1"/><circle cx="15" cy="21" r="1"/>
-                </svg>
-                Dine In
-              </Link>
-              <Link
-                to="/order?type=takeaway"
-                className="inline-flex items-center gap-2 sm:gap-2.5 font-semibold text-[12px] sm:text-[13px] px-5 sm:px-7 py-3 sm:py-3.5 rounded-full
-                  border border-ch-cream/30 text-ch-cream backdrop-blur-sm
-                  hover:bg-ch-cream/10 hover:border-ch-cream/50 transition-all duration-200"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                </svg>
-                Take Away
-              </Link>
-            </div>
-
-            {/* stats row — tighter gap on mobile */}
-            <div className="flex items-center gap-5 sm:gap-8 border-t border-ch-cream/10 mt-10 sm:mt-14 pt-5 sm:pt-7 flex-wrap">
-              {[
-                { val:'5.0 ★', label:'Google Rating' },
-                { val:'19+',   label:'Happy Reviews'  },
-                { val:'₹1–200',label:'Affordable'      },
-              ].map((s, i) => (
-                <div key={i}>
-                  <span className="font-display font-bold text-ch-cream text-lg sm:text-xl block leading-none mb-1">{s.val}</span>
-                  <span className="text-ch-cream/35 text-[9px] sm:text-[10px] uppercase tracking-[0.14em]">{s.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Buttons — centered on mobile, bottom-left on desktop */}
+        <div className="relative z-10 flex gap-3 sm:gap-4 animate-fade-up sm:absolute sm:bottom-16 sm:left-12 lg:left-24">
+          <Link
+            to="/order?type=dine-in"
+            className="inline-flex items-center gap-2 font-semibold text-[12px] sm:text-[13px] px-5 sm:px-7 py-3 sm:py-3.5 rounded-full
+              transition-all duration-200 hover:scale-105 hover:shadow-[0_6px_24px_rgba(200,151,42,0.45)]"
+            style={{ background:'#C8972A', color:'#1A0A04' }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 2h18l-2 13H5L3 2z"/><circle cx="9" cy="21" r="1"/><circle cx="15" cy="21" r="1"/>
+            </svg>
+            Dine In
+          </Link>
+          <Link
+            to="/order?type=takeaway"
+            className="inline-flex items-center gap-2 font-semibold text-[12px] sm:text-[13px] px-5 sm:px-7 py-3 sm:py-3.5 rounded-full
+              border border-ch-cream/30 text-ch-cream backdrop-blur-sm
+              hover:bg-ch-cream/10 hover:border-ch-cream/50 transition-all duration-200"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            Take Away
+          </Link>
         </div>
 
-        {/* scroll hint */}
-        <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 animate-scroll-hint">
+        {/* Scroll hint — desktop only */}
+        <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 animate-scroll-hint">
           <ChevronDown size={16} className="text-ch-cream/25" />
           <span className="text-ch-cream/20 text-[9px] tracking-[0.2em] uppercase">Scroll</span>
         </div>
