@@ -146,17 +146,19 @@ export default function Home() {
       {/* ── HERO ──────────────────────────────────────────── */}
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
 
-        {/* Hero background — img scales correctly at every breakpoint */}
-        <img
-          src={heroBg}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-[30%_center] sm:object-center"
+        {/* Hero background */}
+        <div className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${heroBg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+          }}
         />
 
-        {/* Mobile: heavier uniform dark overlay so text is always readable */}
+        {/* Mobile overlay — lighter so image actually shows */}
         <div className="absolute inset-0 pointer-events-none sm:hidden"
-          style={{ background: 'rgba(6,3,1,0.78)' }}
+          style={{ background: 'rgba(6,3,1,0.52)' }}
         />
 
         {/* Desktop: directional overlay — dark left, reveals café on right */}
@@ -298,8 +300,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── WHY US ────────────────────────────────────────── */}
-      <section className="py-14 sm:py-24 bg-ch-brown relative overflow-hidden">
+      {/* ── WHY US — hidden on mobile ─────────────────────── */}
+      <section className="hidden sm:block py-14 sm:py-24 bg-ch-brown relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage:'radial-gradient(circle at 1px 1px,#EDD9B0 1px,transparent 0)', backgroundSize:'28px 28px' }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
@@ -346,17 +348,29 @@ export default function Home() {
             </h2>
           </R>
 
-          {/* Mobile: stacked, Desktop: masonry */}
+          {/* Mobile: stacked with overlays */}
           <div className="flex flex-col gap-3 sm:hidden">
             <div className="rounded-[16px] overflow-hidden relative" style={{ height:'220px' }}>
               <img src={interior2} alt="Interior" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-ch-brown/70 via-transparent to-transparent flex items-end p-4">
+                <div>
+                  <p className="font-display text-ch-cream font-semibold text-sm">Cozy Interiors</p>
+                  <p className="text-ch-cream/60 text-[11px]">Rattan lights · Walnut wood · Warm ambience</p>
+                </div>
+              </div>
             </div>
             {[
               { src: interior1, label:'Logo Wall',      sub:'Our signature mirror sign' },
               { src: food1,     label:'Delicious Food', sub:'Made fresh every day'       },
             ].map((g) => (
-              <div key={g.label} className="rounded-[16px] overflow-hidden relative" style={{ height:'160px' }}>
+              <div key={g.label} className="rounded-[16px] overflow-hidden relative" style={{ height:'180px' }}>
                 <img src={g.src} alt={g.label} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ch-brown/70 via-transparent to-transparent flex items-end p-4">
+                  <div>
+                    <p className="font-display text-ch-cream font-semibold text-sm">{g.label}</p>
+                    <p className="text-ch-cream/55 text-[11px]">{g.sub}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -443,11 +457,24 @@ export default function Home() {
           </R>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            {reviews.map((r, i) => (
+            {reviews.slice(0, 4).map((r, i) => (
               <R key={r.id} delay={`reveal-d${(i % 4) + 1}`}>
                 <ReviewCard review={r} />
               </R>
             ))}
+          </div>
+
+          {/* Leave a Review — mobile only */}
+          <div className="mt-6 flex justify-center sm:hidden">
+            <a
+              href={cafeInfo.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ch-brown text-ch-cream text-sm font-semibold
+                hover:bg-ch-gold hover:text-ch-brown transition-all duration-200"
+            >
+              ⭐ Leave a Review on Google
+            </a>
           </div>
         </div>
       </section>
