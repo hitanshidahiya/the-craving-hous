@@ -9,6 +9,7 @@ import logo      from '../assets/logo.png'
 import interior1 from '../assets/interior1.jpg'
 import interior2 from '../assets/interior2.jpg'
 import exterior  from '../assets/exterior.jpg'
+import heroBg    from '../assets/hero.png'
 import food1     from '../assets/food1.jpg'
 import video1    from '../assets/video1.mp4'
 
@@ -152,75 +153,96 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ──────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-ch-charcoal">
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
 
-        {/* layered background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#100500] via-[#2B1206] to-[#1A0A04]" />
+        {/* Hero background — full bleed, landscape, fills perfectly */}
+        <div className="absolute inset-0">
+          <img
+            src={heroBg}
+            alt="The Craving Hous"
+            className="w-full h-full object-cover object-center"
+          />
+        </div>
 
-        {/* dot grid */}
-        <div className="absolute inset-0 opacity-[0.035]"
-          style={{ backgroundImage:'radial-gradient(circle at 1px 1px,#EDD9B0 1px,transparent 0)', backgroundSize:'36px 36px' }} />
+        {/* Overlay: darkens right naturally, heavier on left for text readability */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{
+            background: [
+              'linear-gradient(to right, rgba(6,3,1,0.88) 0%, rgba(6,3,1,0.72) 32%, rgba(6,3,1,0.25) 58%, rgba(6,3,1,0.08) 100%)',
+              'linear-gradient(to bottom, rgba(6,3,1,0.35) 0%, transparent 25%, transparent 70%, rgba(6,3,1,0.55) 100%)',
+            ].join(', ')
+          }}
+        />
 
-        {/* radial glow behind logo */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-          w-[700px] h-[700px] rounded-full pointer-events-none"
-          style={{ background:'radial-gradient(circle,rgba(192,139,58,0.12) 0%,transparent 65%)' }} />
+        {/* hero content — left-aligned */}
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 lg:px-12 pt-28 pb-20 animate-fade-up">
+          <div className="max-w-xl">
 
-        {/* hero content */}
-        <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-3xl mx-auto pt-24 pb-32 animate-fade-up">
+            {/* small heart + decorative line (from mockup) */}
+            <div className="flex items-center gap-3 mb-7">
+              <span className="block w-8 h-px bg-ch-gold/50" />
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" className="text-ch-gold/60">
+                <path d="M12 21C12 21 3 13.5 3 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-9 13-9 13z"
+                  stroke="currentColor" strokeWidth="1.5" />
+              </svg>
+            </div>
 
-          {/* pill badge */}
-          <div className="inline-flex items-center gap-2 bg-ch-cream/8 border border-ch-cream/12
-            text-ch-cream/70 text-[11px] tracking-[0.16em] uppercase px-5 py-2 rounded-full mb-8 backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-ch-gold animate-pulse" />
-            Now Open · Kharar, Punjab
-          </div>
+            {/* headline */}
+            <h1 className="font-display font-bold text-ch-cream leading-[1.06] mb-5"
+              style={{ fontSize:'clamp(2.8rem,6.5vw,5rem)' }}>
+              Where<br />
+              Cravings<br />
+              Become<br />
+              <em className="not-italic"
+                style={{ color:'#C8972A', textShadow:'0 0 60px rgba(200,151,42,0.45)' }}>
+                Memories
+              </em>
+            </h1>
 
-          {/* logo */}
-          <div className="relative mb-8">
-            <img
-              src={logo}
-              alt="The Craving Hous"
-              className="w-28 h-28 rounded-full object-cover animate-pulse-glow"
-              style={{ boxShadow:'0 0 0 1px rgba(192,139,58,0.2), 0 0 40px rgba(192,139,58,0.15)' }}
-            />
-            {/* orbiting ring */}
-            <div className="absolute inset-[-8px] rounded-full border border-ch-gold/15 animate-spin"
-              style={{ animationDuration:'12s' }} />
-          </div>
+            {/* sub-line */}
+            <p className="text-ch-cream/55 text-[15px] mb-10 tracking-wide">
+              A perfect blend of taste, comfort &amp; vibes.
+            </p>
 
-          <h1 className="font-display font-bold text-ch-cream leading-[1.08] mb-5"
-            style={{ fontSize:'clamp(2.6rem,7vw,5.2rem)' }}>
-            Where Cravings<br />
-            Become <em className="text-ch-amber not-italic"
-              style={{ textShadow:'0 0 40px rgba(224,176,96,0.3)' }}>Memories</em>
-          </h1>
+            {/* CTA buttons — match mockup exactly */}
+            <div className="flex gap-4 flex-wrap">
+              <Link
+                to="/order?type=dine-in"
+                className="inline-flex items-center gap-2.5 font-semibold text-[13px] px-7 py-3.5 rounded-full
+                  transition-all duration-200 hover:scale-105 hover:shadow-[0_6px_24px_rgba(200,151,42,0.45)]"
+                style={{ background:'#C8972A', color:'#1A0A04' }}
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 2h18l-2 13H5L3 2z"/><circle cx="9" cy="21" r="1"/><circle cx="15" cy="21" r="1"/>
+                </svg>
+                Dine In
+              </Link>
+              <Link
+                to="/order?type=takeaway"
+                className="inline-flex items-center gap-2.5 font-semibold text-[13px] px-7 py-3.5 rounded-full
+                  border border-ch-cream/30 text-ch-cream backdrop-blur-sm
+                  hover:bg-ch-cream/10 hover:border-ch-cream/50 transition-all duration-200"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                Take Away
+              </Link>
+            </div>
 
-          <p className="font-display italic text-ch-cream/45 text-lg mb-10 tracking-wide">
-            Burgers · Pasta · Frappes · Pizza · Desserts & More
-          </p>
-
-          <div className="flex gap-4 justify-center flex-wrap mb-16">
-            <Link to="/order?type=dine-in" className="btn-gold text-[13px] px-8 py-3.5">
-              🍽️ Dine In
-            </Link>
-            <Link to="/order?type=takeaway" className="btn-outline text-[13px] px-8 py-3.5">
-              🥡 Take Away
-            </Link>
-          </div>
-
-          {/* stats row */}
-          <div className="flex items-center gap-8 sm:gap-12 border-t border-ch-cream/8 pt-8 flex-wrap justify-center">
-            {[
-              { val:'5.0 ★', label:'Google Rating' },
-              { val:'19+',   label:'Happy Reviews'  },
-              { val:'₹1–200',label:'Affordable'      },
-            ].map((s, i) => (
-              <div key={i} className="text-center">
-                <span className="font-display font-bold text-ch-cream text-2xl block leading-none mb-1">{s.val}</span>
-                <span className="text-ch-cream/35 text-[10px] uppercase tracking-[0.14em]">{s.label}</span>
-              </div>
-            ))}
+            {/* stats row */}
+            <div className="flex items-center gap-8 border-t border-ch-cream/10 mt-14 pt-7 flex-wrap">
+              {[
+                { val:'5.0 ★', label:'Google Rating' },
+                { val:'19+',   label:'Happy Reviews'  },
+                { val:'₹1–200',label:'Affordable'      },
+              ].map((s, i) => (
+                <div key={i}>
+                  <span className="font-display font-bold text-ch-cream text-xl block leading-none mb-1">{s.val}</span>
+                  <span className="text-ch-cream/35 text-[10px] uppercase tracking-[0.14em]">{s.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

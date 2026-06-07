@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { CartProvider } from './context/CartContext'
 import Navbar from './components/layout/Navbar'
@@ -11,10 +12,20 @@ import Track    from './pages/Track'
 import Admin    from './pages/Admin'
 import NotFound from './pages/NotFound'
 
+/* ── Fix 4: scroll to top on every route change ── */
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname])
+  return null
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <CartProvider>
+        <ScrollToTop />
         <Routes>
           {/* Admin — no navbar/footer */}
           <Route path="/admin" element={<Admin />} />
