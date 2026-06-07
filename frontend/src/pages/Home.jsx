@@ -144,7 +144,7 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ──────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+      <section className="relative min-h-[70vh] sm:min-h-screen flex flex-col justify-center overflow-hidden">
 
         {/* Hero background */}
         <div className="absolute inset-0"
