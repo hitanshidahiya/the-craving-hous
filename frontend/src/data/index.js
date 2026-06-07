@@ -241,12 +241,12 @@ export const menu = [
 ]
 
 export const reviews = [
-  { id:1, name:'Yuvi Hayer',       initials:'YH', bg:'#6B8F5E', meta:'Local Guide · 12 reviews · 2 weeks ago', text:"Amazing food, service, and a great vibe. The interior is really cool, the food is delicious. The owner is super humble too. It's like my everyday evening place.", tags:['Food 5/5','Atmosphere 5/5','Service 5/5'] },
-  { id:2, name:'Archana Sharma',   initials:'AS', bg:'#C08B3A', meta:'Local Guide · 21 reviews · 2 weeks ago', text:'Cafe ka ambience bahut cozy aur beautiful tha. Virgin Mojito bilkul refreshing tha, Green Apple drink ka taste bhi kaafi unique aur yummy laga. White Sauce Pasta creamy aur super delicious tha.', tags:['Cozy Vibes','No Wait','Food 5/5'] },
-  { id:3, name:'Madeeha Malik',    initials:'MM', bg:'#7B4A2D', meta:'1 review · 2 weeks ago',                 text:'What a Pinterest vibe there, and the service is outstanding. I really like the food 😍😍', tags:['Pinterest Vibe','Service 5/5','Food 5/5'] },
-  { id:4, name:'Kamal',            initials:'K',  bg:'#2B1206', meta:'1 review · 2 days ago',                  text:'Outstanding food, great ambience, friendly staff, and delicious food that keeps you coming back for more.', tags:['Food 5/5','Ambience 5/5'] },
-  { id:5, name:'Jaideep Brar',     initials:'JB', bg:'#3D6B5A', meta:'2 reviews · 2 days ago',                 text:'The atmosphere is really soothing and the food quality is great. Owner and staff nature is great, they are very friendly.', tags:['Friendly Staff','Soothing Vibe'] },
-  { id:6, name:'Rahul Verma',      initials:'RV', bg:'#8B5A2B', meta:'2 reviews · 2 days ago',                 text:"Try pasta and frappe — was too gud, must try! You won't regret it.", tags:['Pasta ❤️','Frappe 🧋'] },
-  { id:7, name:'Rabiya Bhatt',     initials:'RB', bg:'#5C2E18', meta:'4 reviews · 2 weeks ago',                text:'This place becomes my favorite place now.', tags:['Favourite Spot'] },
-  { id:8, name:'Shushant Bhumbla', initials:'SB', bg:'#2A4A35', meta:'11 reviews · 2 days ago',                text:'Great experience overall. Would definitely come back!', tags:['Great Experience'] },
+  { id:1, name:'Yuvi Hayer',       initials:'YH', bg:'#6B8F5E', meta:'Local Guide · 12 reviews ', text:"Amazing food, service, and a great vibe. The interior is really cool, the food is delicious. The owner is super humble too. It's like my everyday evening place.", tags:['Food 5/5','Atmosphere 5/5','Service 5/5'] },
+  { id:2, name:'Archana Sharma',   initials:'AS', bg:'#C08B3A', meta:'Local Guide · 21 reviews ', text:'Cafe ka ambience bahut cozy aur beautiful tha. Virgin Mojito bilkul refreshing tha, Green Apple drink ka taste bhi kaafi unique aur yummy laga. White Sauce Pasta creamy aur super delicious tha.', tags:['Cozy Vibes','No Wait','Food 5/5'] },
+  { id:3, name:'Madeeha Malik',    initials:'MM', bg:'#7B4A2D', meta:'1 review ',                 text:'What a Pinterest vibe there, and the service is outstanding. I really like the food 😍😍', tags:['Pinterest Vibe','Service 5/5','Food 5/5'] },
+  { id:4, name:'Kamal',            initials:'K',  bg:'#2B1206', meta:'1 review',                  text:'Outstanding food, great ambience, friendly staff, and delicious food that keeps you coming back for more.', tags:['Food 5/5','Ambience 5/5'] },
+  { id:5, name:'Jaideep Brar',     initials:'JB', bg:'#3D6B5A', meta:'2 reviews',                 text:'The atmosphere is really soothing and the food quality is great. Owner and staff nature is great, they are very friendly.', tags:['Friendly Staff','Soothing Vibe'] },
+  { id:6, name:'Rahul Verma',      initials:'RV', bg:'#8B5A2B', meta:'2 reviews',                 text:"Try pasta and frappe — was too gud, must try! You won't regret it.", tags:['Pasta ❤️','Frappe 🧋'] },
+  { id:7, name:'Rabiya Bhatt',     initials:'RB', bg:'#5C2E18', meta:'4 reviews ',                text:'This place becomes my favorite place now.', tags:['Favourite Spot'] },
+  { id:8, name:'Shushant Bhumbla', initials:'SB', bg:'#2A4A35', meta:'11 reviews',                text:'Great experience overall. Would definitely come back!', tags:['Great Experience'] },
 ]
