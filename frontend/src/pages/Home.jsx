@@ -5,14 +5,14 @@ import { useCart } from '../context/CartContext'
 import { menu, reviews, cafeInfo } from '../data'
 import toast from 'react-hot-toast'
 
-import logo      from '../assets/logo.png'
+import logo from '../assets/logo.png'
 import interior1 from '../assets/interior1.jpg'
 import interior2 from '../assets/interior2.jpg'
-import exterior  from '../assets/exterior.jpg'
-import heroBg    from '../assets/hero.png'
-import heroBg2   from '../assets/hero2.png'
-import food1     from '../assets/food1.jpg'
-import video1    from '../assets/video1.mp4'
+import exterior from '../assets/exterior.jpg'
+import heroBg from '../assets/hero.png'
+import heroBg2 from '../assets/hero2.png'
+import food1 from '../assets/food1.jpg'
+import video1 from '../assets/video1.mp4'
 
 /* ── tiny helpers ─────────────────────────────────────────── */
 function useReveal() {
@@ -40,15 +40,15 @@ const Tag = ({ children }) => (
 
 /* ── FoodCard ─────────────────────────────────────────────── */
 const gradients = {
-  burgers:    'from-[#3D1A0A] to-[#7B4A2D]',
-  pasta:      'from-[#7B4A2D] to-[#C4956A]',
-  frappes:    'from-[#2A4A35] to-[#6B8F5E]',
-  pizza:      'from-[#5C1A1A] to-[#A03030]',
-  shakes:     'from-[#2B1A4A] to-[#6B4A9E]',
-  drinks:     'from-[#1A3A2A] to-[#4A8F6A]',
-  desserts:   'from-[#3D1A0A] to-[#C08B3A]',
+  burgers: 'from-[#3D1A0A] to-[#7B4A2D]',
+  pasta: 'from-[#7B4A2D] to-[#C4956A]',
+  frappes: 'from-[#2A4A35] to-[#6B8F5E]',
+  pizza: 'from-[#5C1A1A] to-[#A03030]',
+  shakes: 'from-[#2B1A4A] to-[#6B4A9E]',
+  drinks: 'from-[#1A3A2A] to-[#4A8F6A]',
+  desserts: 'from-[#3D1A0A] to-[#C08B3A]',
   sandwiches: 'from-[#4A3A1A] to-[#8B6A30]',
-  combos:     'from-[#1A0A04] to-[#3D1A0A]',
+  combos: 'from-[#1A0A04] to-[#3D1A0A]',
 }
 
 function FoodCard({ item }) {
@@ -140,7 +140,7 @@ function ReviewCard({ review }) {
 /* ══════════════════════════════════════════════════════════ */
 export default function Home() {
   const bestSellers = menu.filter(i => i.best).slice(0, 4)
-  const trending    = menu.filter(i => i.hot && !i.best).slice(0, 4)
+  const trending = menu.filter(i => i.hot && !i.best).slice(0, 4)
 
   return (
     <>
@@ -182,16 +182,32 @@ export default function Home() {
           }}
         />
 
+        {/* Hero Text — desktop only */}
+        <div className="hidden sm:block absolute bottom-44 left-12 lg:left-24 z-10 animate-fade-up">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="block w-8 h-px bg-ch-cream/50" />
+            <span className="text-ch-cream/50 text-lg">♡</span>
+          </div>
+          <h1 className="font-display font-bold text-ch-cream leading-[1.1] mb-3"
+            style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)' }}>
+            Where<br />Cravings<br />Become<br />
+            <em className="text-ch-gold not-italic">Memories</em>
+          </h1>
+          <p className="text-ch-cream/60 text-sm sm:text-base max-w-xs">
+            A perfect blend of taste, comfort & vibes.
+          </p>
+        </div>
+
         {/* Buttons — centered on mobile, bottom-left on desktop */}
         <div className="relative z-10 flex gap-3 sm:gap-4 animate-fade-up sm:absolute sm:bottom-16 sm:left-12 lg:left-24">
           <Link
             to="/order?type=dine-in"
             className="inline-flex items-center gap-2 font-semibold text-[12px] sm:text-[13px] px-5 sm:px-7 py-3 sm:py-3.5 rounded-full
               transition-all duration-200 hover:scale-105 hover:shadow-[0_6px_24px_rgba(200,151,42,0.45)]"
-            style={{ background:'#C8972A', color:'#1A0A04' }}
+            style={{ background: '#C8972A', color: '#1A0A04' }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M3 2h18l-2 13H5L3 2z"/><circle cx="9" cy="21" r="1"/><circle cx="15" cy="21" r="1"/>
+              <path d="M3 2h18l-2 13H5L3 2z" /><circle cx="9" cy="21" r="1" /><circle cx="15" cy="21" r="1" />
             </svg>
             Dine In
           </Link>
@@ -202,7 +218,7 @@ export default function Home() {
               hover:bg-ch-cream/10 hover:border-ch-cream/50 transition-all duration-200"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
             Take Away
           </Link>
@@ -221,7 +237,7 @@ export default function Home() {
           <R className="mb-8 sm:mb-12">
             <Tag>Our Favourites</Tag>
             <h2 className="font-display font-bold text-ch-brown leading-tight mb-3"
-              style={{ fontSize:'clamp(1.5rem,4vw,2.8rem)' }}>
+              style={{ fontSize: 'clamp(1.5rem,4vw,2.8rem)' }}>
               Best Sellers Everyone<br />
               <em className="text-ch-gold not-italic">Keeps Coming Back For</em>
             </h2>
@@ -252,7 +268,7 @@ export default function Home() {
           <R className="mb-8 sm:mb-12">
             <Tag>Right Now</Tag>
             <h2 className="font-display font-bold text-ch-brown leading-tight"
-              style={{ fontSize:'clamp(1.5rem,4vw,2.8rem)' }}>
+              style={{ fontSize: 'clamp(1.5rem,4vw,2.8rem)' }}>
               <em className="text-ch-gold not-italic">Trending</em> This Week
             </h2>
           </R>
@@ -269,14 +285,14 @@ export default function Home() {
       {/* ── WHY US — hidden on mobile ─────────────────────── */}
       <section className="hidden sm:block py-14 sm:py-24 bg-ch-brown relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage:'radial-gradient(circle at 1px 1px,#EDD9B0 1px,transparent 0)', backgroundSize:'28px 28px' }} />
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px,#EDD9B0 1px,transparent 0)', backgroundSize: '28px 28px' }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <R className="mb-8 sm:mb-12">
             <p className="flex items-center gap-2.5 text-ch-gold text-xs font-semibold tracking-[0.16em] uppercase mb-3">
               <span className="block w-5 h-px bg-ch-gold" />Why Students Love Us
             </p>
             <h2 className="font-display font-bold text-ch-cream leading-tight mb-3"
-              style={{ fontSize:'clamp(1.5rem,4vw,2.8rem)' }}>
+              style={{ fontSize: 'clamp(1.5rem,4vw,2.8rem)' }}>
               Your <em className="text-ch-amber not-italic">Everyday</em><br />Evening Place
             </h2>
             <p className="text-ch-cream/40 text-sm max-w-sm">A spot where every visit feels like home — cozy, aesthetic & delicious.</p>
@@ -284,12 +300,12 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {[
-              { icon:'🌿', title:'Pinterest-Worthy Vibes',  desc:'Ivy walls, brass lamps, rattan lights — every corner is your next Instagram story.' },
-              { icon:'👨‍🍳', title:'Owner Who Cares',         desc:'A super humble owner and warm staff who make every guest feel truly welcome.' },
-              { icon:'💸', title:'₹1 – ₹200 Only',          desc:'Premium cafe experience at student-friendly prices. Eat well without the guilt.' },
-              { icon:'🔇', title:'Quiet & Easy to Talk',    desc:'Calm ambience perfect for dates, study sessions, or catching up with friends.' },
-              { icon:'⚡', title:'No Wait Time',             desc:'Fast service without compromising on quality. Your order, fresh and fast.' },
-              { icon:'⭐', title:'5.0 Google Rating',        desc:'Perfect score across Food, Service & Atmosphere — our guests say it all.' },
+              { icon: '🌿', title: 'Pinterest-Worthy Vibes', desc: 'Ivy walls, brass lamps, rattan lights — every corner is your next Instagram story.' },
+              { icon: '👨‍🍳', title: 'Owner Who Cares', desc: 'A super humble owner and warm staff who make every guest feel truly welcome.' },
+              { icon: '💸', title: '₹1 – ₹200 Only', desc: 'Premium cafe experience at student-friendly prices. Eat well without the guilt.' },
+              { icon: '🔇', title: 'Quiet & Easy to Talk', desc: 'Calm ambience perfect for dates, study sessions, or catching up with friends.' },
+              { icon: '⚡', title: 'No Wait Time', desc: 'Fast service without compromising on quality. Your order, fresh and fast.' },
+              { icon: '⭐', title: '5.0 Google Rating', desc: 'Perfect score across Food, Service & Atmosphere — our guests say it all.' },
             ].map((c, i) => (
               <R key={c.title} delay={`reveal-d${(i % 3) + 1}`}
                 className="bg-ch-cream/5 border border-ch-cream/8 rounded-[16px] sm:rounded-[20px] p-5 sm:p-7
@@ -309,14 +325,14 @@ export default function Home() {
           <R className="mb-8 sm:mb-12">
             <Tag>Our Space</Tag>
             <h2 className="font-display font-bold text-ch-brown leading-tight"
-              style={{ fontSize:'clamp(1.5rem,4vw,2.8rem)' }}>
+              style={{ fontSize: 'clamp(1.5rem,4vw,2.8rem)' }}>
               Step Into <em className="text-ch-gold not-italic">The Hous</em>
             </h2>
           </R>
 
           {/* Mobile: stacked with overlays */}
           <div className="flex flex-col gap-3 sm:hidden">
-            <div className="rounded-[16px] overflow-hidden relative" style={{ height:'220px' }}>
+            <div className="rounded-[16px] overflow-hidden relative" style={{ height: '220px' }}>
               <img src={interior2} alt="Interior" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-ch-brown/70 via-transparent to-transparent flex items-end p-4">
                 <div>
@@ -326,10 +342,10 @@ export default function Home() {
               </div>
             </div>
             {[
-              { src: interior1, label:'Logo Wall',      sub:'Our signature mirror sign' },
-              { src: food1,     label:'Delicious Food', sub:'Made fresh every day'       },
+              { src: interior1, label: 'Logo Wall', sub: 'Our signature mirror sign' },
+              { src: food1, label: 'Delicious Food', sub: 'Made fresh every day' },
             ].map((g) => (
-              <div key={g.label} className="rounded-[16px] overflow-hidden relative" style={{ height:'180px' }}>
+              <div key={g.label} className="rounded-[16px] overflow-hidden relative" style={{ height: '180px' }}>
                 <img src={g.src} alt={g.label} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ch-brown/70 via-transparent to-transparent flex items-end p-4">
                   <div>
@@ -344,7 +360,7 @@ export default function Home() {
           {/* Desktop masonry grid */}
           <R className="hidden sm:grid grid-cols-3 gap-4">
             <div className="col-span-2 row-span-2 rounded-[20px] overflow-hidden group cursor-pointer relative"
-              style={{ minHeight:'280px' }}>
+              style={{ minHeight: '280px' }}>
               <img src={interior2} alt="Interior"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-ch-brown/60 via-transparent to-transparent
@@ -356,8 +372,8 @@ export default function Home() {
               </div>
             </div>
             {[
-              { src: interior1, label:'Logo Wall',      sub:'Our signature mirror sign' },
-              { src: food1,     label:'Delicious Food', sub:'Made fresh every day'       },
+              { src: interior1, label: 'Logo Wall', sub: 'Our signature mirror sign' },
+              { src: food1, label: 'Delicious Food', sub: 'Made fresh every day' },
             ].map((g) => (
               <div key={g.label} className="rounded-[20px] overflow-hidden group cursor-pointer relative h-44 lg:h-auto">
                 <img src={g.src} alt={g.label}
@@ -383,17 +399,17 @@ export default function Home() {
               <span className="block w-5 h-px bg-ch-gold" />The Vibe
             </p>
             <h2 className="font-display font-bold text-ch-cream leading-tight"
-              style={{ fontSize:'clamp(1.5rem,4vw,2.8rem)' }}>
+              style={{ fontSize: 'clamp(1.5rem,4vw,2.8rem)' }}>
               Feel The <em className="text-ch-amber not-italic">Atmosphere</em>
             </h2>
           </R>
           <R>
             <div className="rounded-[16px] sm:rounded-[24px] overflow-hidden border border-ch-cream/8 relative"
-              style={{ aspectRatio:'16/9', background:'#1A0A04' }}>
+              style={{ aspectRatio: '16/9', background: '#1A0A04' }}>
               <video src={video1} autoPlay muted loop playsInline
                 className="w-full h-full object-cover opacity-90" />
               <div className="absolute inset-0 pointer-events-none"
-                style={{ background:'radial-gradient(ellipse at center,transparent 50%,rgba(26,10,4,0.4) 100%)' }} />
+                style={{ background: 'radial-gradient(ellipse at center,transparent 50%,rgba(26,10,4,0.4) 100%)' }} />
             </div>
           </R>
         </div>
@@ -406,7 +422,7 @@ export default function Home() {
             <div>
               <Tag>What People Say</Tag>
               <h2 className="font-display font-bold text-ch-brown leading-tight"
-                style={{ fontSize:'clamp(1.5rem,4vw,2.8rem)' }}>
+                style={{ fontSize: 'clamp(1.5rem,4vw,2.8rem)' }}>
                 Real <em className="text-ch-gold not-italic">Guests</em>,<br />Real Love
               </h2>
             </div>
@@ -451,7 +467,7 @@ export default function Home() {
           <R className="mb-8 sm:mb-12">
             <Tag>Find Us</Tag>
             <h2 className="font-display font-bold text-ch-brown leading-tight mb-2"
-              style={{ fontSize:'clamp(1.5rem,4vw,2.8rem)' }}>
+              style={{ fontSize: 'clamp(1.5rem,4vw,2.8rem)' }}>
               Come Visit <em className="text-ch-gold not-italic">Us</em>
             </h2>
             <p className="text-ch-tan text-sm">In Kharar, Punjab — easy to find, hard to leave.</p>
@@ -462,7 +478,7 @@ export default function Home() {
               <div className="rounded-[16px] sm:rounded-[20px] overflow-hidden border border-ch-brown/8 h-[260px] sm:h-[380px]">
                 <iframe
                   src="https://maps.google.com/maps?q=The+Craving+Hous+Kharar+Punjab&output=embed&z=16"
-                  width="100%" height="100%" style={{ border:0 }}
+                  width="100%" height="100%" style={{ border: 0 }}
                   allowFullScreen loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="The Craving Hous map"
@@ -475,10 +491,10 @@ export default function Home() {
                 <h3 className="font-display text-ch-brown font-semibold text-base sm:text-lg mb-4 sm:mb-5">Contact & Info</h3>
                 <div className="space-y-3 sm:space-y-4">
                   {[
-                    { icon:'📍', label:'Address',      val: cafeInfo.address         },
-                    { icon:'📸', label:'Instagram',    val: cafeInfo.instagramHandle  },
-                    { icon:'⭐', label:'Rating',       val: `5.0 / 5.0 · ${cafeInfo.reviewCount} Reviews` },
-                    { icon:'💰', label:'Price Range',  val: cafeInfo.priceRange + ' per person' },
+                    { icon: '📍', label: 'Address', val: cafeInfo.address },
+                    { icon: '📸', label: 'Instagram', val: cafeInfo.instagramHandle },
+                    { icon: '⭐', label: 'Rating', val: `5.0 / 5.0 · ${cafeInfo.reviewCount} Reviews` },
+                    { icon: '💰', label: 'Price Range', val: cafeInfo.priceRange + ' per person' },
                   ].map(row => (
                     <div key={row.label} className="flex items-start gap-3">
                       <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-ch-ivory flex items-center justify-center text-sm sm:text-base flex-shrink-0 border border-ch-brown/6">
@@ -516,9 +532,9 @@ export default function Home() {
       {/* ── CTA BANNER ────────────────────────────────────── */}
       <section className="py-14 sm:py-20 bg-ch-brown relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage:'radial-gradient(circle at 1px 1px,#EDD9B0 1px,transparent 0)', backgroundSize:'28px 28px' }} />
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px,#EDD9B0 1px,transparent 0)', backgroundSize: '28px 28px' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[500px] h-[200px] sm:h-[300px] rounded-full pointer-events-none"
-          style={{ background:'radial-gradient(circle,rgba(192,139,58,0.1) 0%,transparent 70%)' }} />
+          style={{ background: 'radial-gradient(circle,rgba(192,139,58,0.1) 0%,transparent 70%)' }} />
         <R className="relative text-center max-w-2xl mx-auto px-5 sm:px-6">
           <p className="font-display italic text-ch-amber/70 text-sm mb-3 tracking-wide">Ready to order?</p>
           <h2 className="font-display font-bold text-ch-cream text-2xl sm:text-3xl md:text-4xl leading-tight mb-5 sm:mb-6">
