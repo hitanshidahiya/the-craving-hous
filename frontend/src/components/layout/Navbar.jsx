@@ -100,7 +100,7 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="md:hidden bg-ch-parchment/96 backdrop-blur-xl border-t border-ch-brown/8 px-6 py-5 flex flex-col gap-1">
+        <div className="md:hidden bg-ch-parchment backdrop-blur-xl border-t border-ch-brown/8 px-6 py-5 flex flex-col gap-1">
           {links.map(l => (
             <Link
               key={l.to}

@@ -199,11 +199,11 @@ export default function Home() {
         </div>
 
         {/* Buttons — centered on mobile, bottom-left on desktop */}
-        <div className="relative z-10 flex gap-3 sm:gap-4 animate-fade-up mt-[49vh] sm:mt-0 sm:absolute sm:bottom-16 sm:left-12 lg:left-24">
+        <div className="relative z-10 flex gap-3 sm:gap-4 animate-fade-up mt-[47vh] sm:mt-0 sm:absolute sm:bottom-16 sm:left-12 lg:left-24">
           <Link
             to="/order?type=dine-in"
             className="inline-flex items-center gap-2 font-semibold text-[12px] sm:text-[13px] px-5 sm:px-7 py-3 sm:py-3.5 rounded-full
-              transition-all duration-200 hover:scale-105 hover:shadow-[0_6px_24px_rgba(200,151,42,0.45)]"
+      transition-all duration-200 hover:scale-105 hover:shadow-[0_6px_24px_rgba(200,151,42,0.45)]"
             style={{ background: '#C8972A', color: '#1A0A04' }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -214,8 +214,8 @@ export default function Home() {
           <Link
             to="/order?type=takeaway"
             className="inline-flex items-center gap-2 font-semibold text-[12px] sm:text-[13px] px-5 sm:px-7 py-3 sm:py-3.5 rounded-full
-              border border-ch-cream/30 text-ch-cream backdrop-blur-sm
-              hover:bg-ch-cream/10 hover:border-ch-cream/50 transition-all duration-200"
+      transition-all duration-200 hover:scale-105 hover:shadow-[0_6px_24px_rgba(200,151,42,0.45)]"
+            style={{ background: '#C8972A', color: '#1A0A04' }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
@@ -229,8 +229,8 @@ export default function Home() {
           <div className="flex sm:max-w-sm sm:ml-12 lg:ml-24">
             {[
               { val: '5.0 ★', label: 'GOOGLE RATING' },
-              { val: '19+',   label: 'HAPPY REVIEWS' },
-              { val: '₹1–200', label: 'AFFORDABLE'   },
+              { val: '19+', label: 'HAPPY REVIEWS' },
+              { val: '₹1–200', label: 'AFFORDABLE' },
             ].map((s, i) => (
               <div key={i} className="flex-1 py-4 px-3">
                 <p className="font-display font-bold text-ch-cream text-lg leading-none">{s.val}</p>
