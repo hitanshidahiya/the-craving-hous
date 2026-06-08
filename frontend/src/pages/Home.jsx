@@ -152,7 +152,7 @@ export default function Home() {
           style={{
             backgroundImage: `url(${heroBg2})`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center center',
+            backgroundPosition: 'top center',
             backgroundRepeat: 'no-repeat',
           }}
         />
@@ -199,7 +199,7 @@ export default function Home() {
         </div>
 
         {/* Buttons — centered on mobile, bottom-left on desktop */}
-        <div className="relative z-10 flex gap-3 sm:gap-4 animate-fade-up sm:absolute sm:bottom-16 sm:left-12 lg:left-24">
+        <div className="relative z-10 flex gap-3 sm:gap-4 animate-fade-up mt-[45vh] sm:mt-0 sm:absolute sm:bottom-16 sm:left-12 lg:left-24">
           <Link
             to="/order?type=dine-in"
             className="inline-flex items-center gap-2 font-semibold text-[12px] sm:text-[13px] px-5 sm:px-7 py-3 sm:py-3.5 rounded-full
