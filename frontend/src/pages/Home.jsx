@@ -224,10 +224,20 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Scroll hint — desktop only */}
-        <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 animate-scroll-hint">
-          <ChevronDown size={16} className="text-ch-cream/25" />
-          <span className="text-ch-cream/20 text-[9px] tracking-[0.2em] uppercase">Scroll</span>
+        {/* Stats bar */}
+        <div className="relative z-10 w-full sm:absolute sm:bottom-0 sm:left-0 mt-10 sm:mt-0">
+          <div className="flex sm:max-w-sm sm:ml-12 lg:ml-24">
+            {[
+              { val: '5.0 ★', label: 'GOOGLE RATING' },
+              { val: '19+',   label: 'HAPPY REVIEWS' },
+              { val: '₹1–200', label: 'AFFORDABLE'   },
+            ].map((s, i) => (
+              <div key={i} className="flex-1 py-4 px-3">
+                <p className="font-display font-bold text-ch-cream text-lg leading-none">{s.val}</p>
+                <p className="text-ch-cream/40 text-[10px] tracking-widest mt-1">{s.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -447,7 +457,7 @@ export default function Home() {
           </div>
 
           {/* Leave a Review — mobile only */}
-          <div className="mt-6 flex justify-center sm:hidden">
+          <div className="mt-15 flex justify-center sm:hidden">
             <a
               href={cafeInfo.mapsUrl}
               target="_blank"
