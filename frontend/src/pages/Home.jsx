@@ -199,7 +199,7 @@ export default function Home() {
         </div>
 
         {/* Buttons — centered on mobile, bottom-left on desktop */}
-        <div className="relative z-10 flex gap-3 sm:gap-4 animate-fade-up mt-[45vh] sm:mt-0 sm:absolute sm:bottom-16 sm:left-12 lg:left-24">
+        <div className="relative z-10 flex gap-3 sm:gap-4 animate-fade-up mt-[55vh] sm:mt-0 sm:absolute sm:bottom-16 sm:left-12 lg:left-24">
           <Link
             to="/order?type=dine-in"
             className="inline-flex items-center gap-2 font-semibold text-[12px] sm:text-[13px] px-5 sm:px-7 py-3 sm:py-3.5 rounded-full
@@ -225,7 +225,7 @@ export default function Home() {
         </div>
 
         {/* Stats bar */}
-        <div className="relative z-10 w-full sm:absolute sm:bottom-0 sm:left-0 mt-10 sm:mt-0">
+        <div className="absolute bottom-0 left-0 z-10 w-full sm:absolute sm:bottom-0 sm:left-0">
           <div className="flex sm:max-w-sm sm:ml-12 lg:ml-24">
             {[
               { val: '5.0 ★', label: 'GOOGLE RATING' },
