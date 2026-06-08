@@ -342,7 +342,7 @@ export default function Home() {
 
           {/* Mobile: stacked with overlays */}
           <div className="flex flex-col gap-3 sm:hidden">
-            <div className="rounded-[16px] overflow-hidden relative" style={{ height: '220px' }}>
+            <div className="rounded-[16px] overflow-hidden relative" style={{ height: '280px' }}>
               <img src={interior2} alt="Interior" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-ch-brown/70 via-transparent to-transparent flex items-end p-4">
                 <div>
@@ -355,7 +355,7 @@ export default function Home() {
               { src: interior1, label: 'Logo Wall', sub: 'Our signature mirror sign' },
               { src: food1, label: 'Delicious Food', sub: 'Made fresh every day' },
             ].map((g) => (
-              <div key={g.label} className="rounded-[16px] overflow-hidden relative" style={{ height: '180px' }}>
+              <div key={g.label} className="rounded-[16px] overflow-hidden relative" style={{ height: '240px' }}>
                 <img src={g.src} alt={g.label} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ch-brown/70 via-transparent to-transparent flex items-end p-4">
                   <div>
