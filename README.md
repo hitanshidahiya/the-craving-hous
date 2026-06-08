@@ -1,4 +1,4 @@
-# The Craving Hous ☕
+# The Craving Hous 🍝
 
 A cafe ordering platform currently being developed for The Craving Hous.
 
