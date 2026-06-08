@@ -45,9 +45,9 @@ export default function Navbar() {
             <p className="font-display font-semibold text-ch-brown leading-none text-[15px] tracking-wide">
               The Craving Hous
             </p>
-            <p className="text-[10px] text-ch-tan tracking-[0.18em] uppercase leading-none mt-0.5">
+            {/* <p className="text-[10px] text-ch-tan tracking-[0.18em] uppercase leading-none mt-0.5">
               Kharar, Punjab
-            </p>
+            </p> */}
           </div>
         </Link>
 
