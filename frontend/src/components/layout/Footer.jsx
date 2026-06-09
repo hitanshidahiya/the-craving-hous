@@ -44,7 +44,13 @@ export default function Footer() {
               <MapPin size={11} /> {cafeInfo.address}
             </a>
           </div>
-
+          {/* Quick links */}
+          <div className="flex gap-4 mb-4">
+            {[['Home', '/'], ['Menu', '/menu'], ['Track Order', '/track'], ['Admin', '/admin']].map(([label, to]) => (
+              <Link key={label} to={to} className="text-ch-cream/40 text-xs hover:text-ch-cream transition-colors duration-200">{label}</Link>
+            ))}
+          </div>
+          
           {/* Social icons */}
           <div className="flex gap-3 mb-5">
             <a href={cafeInfo.instagram} target="_blank" rel="noopener noreferrer"
