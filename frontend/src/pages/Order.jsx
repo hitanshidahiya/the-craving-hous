@@ -7,31 +7,54 @@ import toast from 'react-hot-toast'
 
 /* ── helpers ─────────────────────────────────────────────── */
 const generateOrderId = () =>
-  'TCH' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2,5).toUpperCase()
+  'TCH' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 5).toUpperCase()
 
 const estimatedTime = (items) => {
-  const count = items.reduce((s,i) => s + i.qty, 0)
+  const count = items.reduce((s, i) => s + i.qty, 0)
   if (count <= 2) return '10–15 mins'
   if (count <= 5) return '15–20 mins'
   return '20–30 mins'
 }
-
+/* ── INPUT component ─────────────────────────────────── */
+const Input = ({ label, value, onChange, placeholder, type = 'text', error, prefix }) => (
+  <div>
+    <label className="block text-ch-brown text-xs font-semibold uppercase tracking-wider mb-1.5">
+      {label}
+    </label>
+    <div className={`flex items-center bg-ch-ivory border rounded-xl overflow-hidden transition-all
+        ${error ? 'border-red-400' : 'border-ch-brown/12 focus-within:border-ch-gold/50 focus-within:shadow-[0_0_0_3px_rgba(192,139,58,0.08)]'}`}>
+      {prefix && (
+        <span className="px-3 py-3 bg-ch-parchment text-ch-tan text-sm border-r border-ch-brown/10 font-medium">
+          {prefix}
+        </span>
+      )}
+      <input
+        type={type}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="flex-1 px-4 py-3 text-sm bg-transparent outline-none text-ch-brown placeholder:text-ch-tan/50"
+      />
+    </div>
+    {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
+  </div>
+)
 /* ── Step indicator ──────────────────────────────────────── */
 function StepBar({ current }) {
-  const steps = ['Order Type','Your Info','Payment','Confirmed']
+  const steps = ['Order Type', 'Your Info', 'Payment', 'Confirmed']
   return (
     <div className="flex items-center justify-center gap-0 mb-10">
       {steps.map((label, i) => {
-        const idx   = i + 1
-        const done  = current > idx
-        const active= current === idx
+        const idx = i + 1
+        const done = current > idx
+        const active = current === idx
         return (
           <div key={label} className="flex items-center">
             <div className="flex flex-col items-center gap-1.5">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all
-                ${done   ? 'bg-ch-sage text-white'
-                : active ? 'bg-ch-brown text-ch-cream ring-4 ring-ch-brown/15'
-                :          'bg-ch-ivory text-ch-tan border border-ch-brown/15'}`}>
+                ${done ? 'bg-ch-sage text-white'
+                  : active ? 'bg-ch-brown text-ch-cream ring-4 ring-ch-brown/15'
+                    : 'bg-ch-ivory text-ch-tan border border-ch-brown/15'}`}>
                 {done ? <CheckCircle size={16} /> : idx}
               </div>
               <span className={`text-[10px] font-medium whitespace-nowrap hidden sm:block
@@ -56,7 +79,7 @@ function OrderSummary({ items, subtotal, discount, total, coupon }) {
     <div className="bg-ch-ivory rounded-[20px] border border-ch-brown/8 overflow-hidden sticky top-28">
       <div className="bg-ch-brown px-5 py-4">
         <h3 className="font-display text-ch-cream font-semibold">Order Summary</h3>
-        <p className="text-ch-cream/50 text-xs mt-0.5">{items.reduce((s,i)=>s+i.qty,0)} items</p>
+        <p className="text-ch-cream/50 text-xs mt-0.5">{items.reduce((s, i) => s + i.qty, 0)} items</p>
       </div>
       <div className="px-5 py-4 space-y-3 max-h-56 overflow-y-auto">
         {items.map(item => (
@@ -84,7 +107,7 @@ function OrderSummary({ items, subtotal, discount, total, coupon }) {
         {cafeInfo.gstEnabled && (
           <div className="flex justify-between text-xs text-ch-tan">
             <span>GST ({cafeInfo.gstRate}%)</span>
-            <span>₹{Math.round((subtotal-discount)*cafeInfo.gstRate/100)}</span>
+            <span>₹{Math.round((subtotal - discount) * cafeInfo.gstRate / 100)}</span>
           </div>
         )}
         <div className="flex justify-between font-display font-bold text-ch-brown text-base pt-1 border-t border-ch-brown/8">
@@ -97,8 +120,8 @@ function OrderSummary({ items, subtotal, discount, total, coupon }) {
 
 /* ══════════════════════════════════════════════════════════ */
 export default function Order() {
-  const [params]   = useSearchParams()
-  const navigate   = useNavigate()
+  const [params] = useSearchParams()
+  const navigate = useNavigate()
   const {
     items, clearCart,
     orderType, setOrderType,
@@ -107,18 +130,18 @@ export default function Order() {
     coupon, specialInstructions,
   } = useCart()
 
-  const [step,    setStep]    = useState(1)
-  const [name,    setName]    = useState('')
-  const [phone,   setPhone]   = useState('')
+  const [step, setStep] = useState(1)
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
   const [payment, setPayment] = useState('')
   const [orderId, setOrderId] = useState('')
-  const [errors,  setErrors]  = useState({})
+  const [errors, setErrors] = useState({})
 
   /* pre-select order type from URL param */
   useEffect(() => {
     const t = params.get('type')
-    if (t === 'dine-in')   setOrderType('dine-in')
-    if (t === 'takeaway')  setOrderType('takeaway')
+    if (t === 'dine-in') setOrderType('dine-in')
+    if (t === 'takeaway') setOrderType('takeaway')
   }, [params])
 
   /* redirect if cart empty (except on confirmation) */
@@ -137,7 +160,7 @@ export default function Order() {
 
   const validateStep2 = () => {
     const e = {}
-    if (!name.trim())              e.name  = 'Name is required'
+    if (!name.trim()) e.name = 'Name is required'
     if (!/^[6-9]\d{9}$/.test(phone)) e.phone = 'Enter a valid 10-digit mobile number'
     setErrors(e)
     return Object.keys(e).length === 0
@@ -166,30 +189,7 @@ export default function Order() {
 
   const back = () => { if (step > 1 && step < 4) setStep(s => s - 1) }
 
-  /* ── INPUT component ─────────────────────────────────── */
-  const Input = ({ label, value, onChange, placeholder, type='text', error, prefix }) => (
-    <div>
-      <label className="block text-ch-brown text-xs font-semibold uppercase tracking-wider mb-1.5">
-        {label}
-      </label>
-      <div className={`flex items-center bg-ch-ivory border rounded-xl overflow-hidden transition-all
-        ${error ? 'border-red-400' : 'border-ch-brown/12 focus-within:border-ch-gold/50 focus-within:shadow-[0_0_0_3px_rgba(192,139,58,0.08)]'}`}>
-        {prefix && (
-          <span className="px-3 py-3 bg-ch-parchment text-ch-tan text-sm border-r border-ch-brown/10 font-medium">
-            {prefix}
-          </span>
-        )}
-        <input
-          type={type}
-          value={value}
-          onChange={e => onChange(e.target.value)}
-          placeholder={placeholder}
-          className="flex-1 px-4 py-3 text-sm bg-transparent outline-none text-ch-brown placeholder:text-ch-tan/50"
-        />
-      </div>
-      {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
-    </div>
-  )
+
 
   return (
     <div className="min-h-screen bg-ch-parchment pt-[70px]">
@@ -197,7 +197,7 @@ export default function Order() {
       {/* header */}
       <div className="bg-ch-brown relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
-          style={{ backgroundImage:'radial-gradient(circle at 1px 1px,#EDD9B0 1px,transparent 0)', backgroundSize:'28px 28px' }} />
+          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px,#EDD9B0 1px,transparent 0)', backgroundSize: '28px 28px' }} />
         <div className="relative max-w-7xl mx-auto px-6 py-10 text-center">
           <h1 className="font-display font-bold text-ch-cream text-4xl mb-1">
             Place Your <em className="text-ch-amber not-italic">Order</em>
@@ -283,7 +283,7 @@ export default function Order() {
                       <Utensils size={20} /> Table Number
                     </p>
                     <div className="flex gap-5 flex-wrap">
-                      {[1,2,3,4,5].map(n => (
+                      {[1, 2, 3, 4, 5].map(n => (
                         <button
                           key={n}
                           onClick={() => setTableNumber(n)}
@@ -322,7 +322,7 @@ export default function Order() {
                   <Input
                     label="Mobile Number"
                     value={phone}
-                    onChange={v => setPhone(v.replace(/\D/g,'').slice(0,10))}
+                    onChange={v => setPhone(v.replace(/\D/g, '').slice(0, 10))}
                     placeholder="10-digit mobile number"
                     type="tel"
                     prefix="+91"
@@ -439,12 +439,12 @@ export default function Order() {
                 {/* Details */}
                 <div className="bg-ch-parchment rounded-[14px] p-5 text-left space-y-3 mb-6">
                   {[
-                    { label:'Customer',     val: name },
-                    { label:'Phone',        val: `+91 ${phone}` },
-                    { label:'Order Type',   val: orderType === 'dine-in' ? `Dine In · Table ${tableNumber}` : 'Take Away' },
-                    { label:'Payment',      val: payment === 'cash' ? 'Cash at Counter' : 'Online Payment' },
-                    { label:'Amount',       val: `₹${total}` },
-                    { label:'Est. Time',    val: estimatedTime(items) },
+                    { label: 'Customer', val: name },
+                    { label: 'Phone', val: `+91 ${phone}` },
+                    { label: 'Order Type', val: orderType === 'dine-in' ? `Dine In · Table ${tableNumber}` : 'Take Away' },
+                    { label: 'Payment', val: payment === 'cash' ? 'Cash at Counter' : 'Online Payment' },
+                    { label: 'Amount', val: `₹${total}` },
+                    { label: 'Est. Time', val: estimatedTime(items) },
                   ].map(row => (
                     <div key={row.label} className="flex justify-between text-sm">
                       <span className="text-ch-tan">{row.label}</span>
@@ -457,7 +457,7 @@ export default function Order() {
                 <div className="bg-ch-gold/8 border border-ch-gold/20 rounded-[14px] p-4 mb-6">
                   <p className="text-ch-brown text-xs font-medium mb-2">Enjoying the vibes? 🌿</p>
                   <div className="flex justify-center gap-1">
-                    {[1,2,3,4,5].map(s => (
+                    {[1, 2, 3, 4, 5].map(s => (
                       <Star key={s} size={20} className="text-ch-gold fill-ch-gold cursor-pointer hover:scale-110 transition-transform" />
                     ))}
                   </div>
@@ -471,7 +471,7 @@ export default function Order() {
 
                 <div className="flex gap-3 justify-center flex-wrap">
                   <button
-                    onClick={() => navigate('/track', { state:{ orderId, name, orderType, tableNumber, items:[], payment, total } })}
+                    onClick={() => navigate('/track', { state: { orderId, name, orderType, tableNumber, items: [], payment, total } })}
                     className="btn-primary"
                   >
                     Track Order <ChevronRight size={14} />
